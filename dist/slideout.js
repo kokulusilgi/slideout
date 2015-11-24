@@ -74,6 +74,7 @@ function Slideout(options) {
   // Sets options
   this._fx = options.fx || 'ease';
   this._duration = parseInt(options.duration, 10) || 300;
+  this._move_range = parseInt(options.move_range, 10) || 100;
   this._tolerance = parseInt(options.tolerance, 10) || 70;
   this._padding = this._translateTo = parseInt(options.padding, 10) || 256;
   this._orientation = options.side === 'right' ? -1 : 1;
@@ -228,7 +229,7 @@ Slideout.prototype._initTouchEvents = function() {
 
     if (Math.abs(translateX) > self._padding) { return; }
 
-    if (Math.abs(dif_x) > 20) {
+    if (Math.abs(dif_x) > self._move_range) {
       self._opening = true;
 
       var oriented_dif_x = dif_x * self._orientation;
